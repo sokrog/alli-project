@@ -7,8 +7,15 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Dashboard',
+      name: 'dashboard',
       component: require('@/components/Dashboard').default
+    },
+    {
+      path: '/currencies',
+      name: 'currencies',
+      component: () => import(
+        `@/components/Currencies.vue`
+      )
     },
     {
       path: '*',

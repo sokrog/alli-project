@@ -1,6 +1,6 @@
 'use strict'
 
-import { app, BrowserWindow } from 'electron'
+import {app, BrowserWindow, ipcMain} from 'electron'
 
 /**
  * Set `__static` path to static files in production
@@ -24,13 +24,38 @@ function createWindow () {
     useContentSize: true,
     width: 1360,
     title: 'alli-project',
-    frame: false
+    frame: false,
+    center: true
   })
 
   mainWindow.loadURL(winURL)
 
   mainWindow.on('closed', () => {
     mainWindow = null
+  })
+
+  mainWindow.on('unmaximize', () => {
+    mainWindow.webContents.send('window:unmaximize')
+  })
+
+  mainWindow.on('maximize', () => {
+    mainWindow.webContents.send('window:maximize')
+  })
+
+  ipcMain.on('window:minimize', () => {
+    mainWindow.minimize()
+  })
+
+  ipcMain.on('window:maximize', () => {
+    if (mainWindow.isMaximized()) {
+      mainWindow.restore()
+    } else {
+      mainWindow.maximize()
+    }
+  })
+
+  ipcMain.on('window:closed', () => {
+    mainWindow.close()
   })
 }
 
