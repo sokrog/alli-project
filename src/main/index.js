@@ -20,12 +20,11 @@ function createWindow () {
    * Initial window options
    */
   mainWindow = new BrowserWindow({
-    webPreferences: { webSecurity: false },
     height: 768,
     useContentSize: true,
     width: 1360,
-    resizable: false,
-    title: 'alli-project'
+    title: 'alli-project',
+    frame: false
   })
 
   mainWindow.loadURL(winURL)

@@ -4,7 +4,7 @@
         <v-app :dark="getDark" style="-webkit-user-select: none">
             <v-container fluid class="back">
                 <v-layout row wrap>
-                    <!--<the-system-bar></the-system-bar>-->
+                    <the-system-bar></the-system-bar>
                     <the-drawer></the-drawer>
                     <v-content class="content">
                         <router-view></router-view>
