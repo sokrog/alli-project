@@ -18,6 +18,13 @@ export default new Router({
       )
     },
     {
+      path: '/creditors',
+      name: 'creditors',
+      component: () => import(
+        `@/components/Creditors.vue`
+      )
+    },
+    {
       path: '*',
       redirect: '/'
     }

@@ -34,7 +34,8 @@
       mini: false,
       items: [
         {title: 'Dashboard', icon: 'dashboard', url: '/'},
-        {title: 'Currencies', icon: 'euro_symbol', url: '/currencies'}
+        {title: 'Currencies', icon: 'euro_symbol', url: '/currencies'},
+        {title: 'Creditors', icon: 'credit_card', url: '/creditors'}
       ]
     })
   }
