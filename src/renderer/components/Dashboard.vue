@@ -1,9 +1,9 @@
 <template>
-  <v-content>
+  <v-container>
     <v-layout row wrap>
-      <h1>This is Dashboard</h1>
+      <h2>This is Dashboard</h2>
     </v-layout>
-  </v-content>
+  </v-container>
 </template>
 
 <script>

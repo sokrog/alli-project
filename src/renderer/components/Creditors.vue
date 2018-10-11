@@ -1,9 +1,9 @@
 <template>
-  <v-content>
+  <v-container>
     <v-layout row wrap>
-      <h1>This is Creditors</h1>
+      <h2>This is Creditors</h2>
     </v-layout>
-  </v-content>
+  </v-container>
 </template>
 
 <script>
