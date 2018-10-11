@@ -1,32 +1,29 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import paths from './paths'
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
 
 Vue.use(Router)
 
-export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'dashboard',
-      component: require('@/components/Dashboard').default
-    },
-    {
-      path: '/currencies',
-      name: 'currencies',
-      component: () => import(
-        `@/components/Currencies.vue`
-      )
-    },
-    {
-      path: '/creditors',
-      name: 'creditors',
-      component: () => import(
-        `@/components/Creditors.vue`
-      )
-    },
-    {
-      path: '*',
-      redirect: '/'
-    }
-  ]
+NProgress.configure({ showSpinner: false })
+
+const router = new Router({
+  base: '/',
+  mode: 'hash',
+  linkActiveClass: 'active',
+  routes: paths
 })
+
+// router gards
+router.beforeEach((to, from, next) => {
+  NProgress.start()
+  next()
+})
+
+router.afterEach((to, from) => {
+  // ...
+  NProgress.done()
+})
+
+export default router
