@@ -13,7 +13,7 @@
             <v-container grid-list-md>
               <v-layout row wrap>
                 <v-flex xs2 lg2 pt-4>
-                  <!-- добавить loading -->
+                  <!-- добавить loading на кнопку -->
                   <v-btn
                     block
                     depressed
@@ -63,12 +63,21 @@
           </v-card-actions>
 
           <v-card-text>
+            <!-- добавить loading и к таблице -->
             <v-data-table
               :headers="headers"
               :items="computedCurrencies"
               :search="search"
-              class="elevation-1"
+              class="elevation-0"
+              :dark=this.$store.getters.getDark
             >
+              <template slot="headerCell" slot-scope="props">
+                <v-tooltip bottom>
+                  <span slot="activator"> {{props.header.text}} </span>
+                  <span> {{props.header.text}} </span>
+                </v-tooltip>
+              </template>
+
               <template slot="items" slot-scope="props">
                 <td class="text-xs-left">{{ props.item.numCode }}</td>
                 <td class="text-xs-left">{{ props.item.charCode }}</td>

@@ -10,7 +10,15 @@ class Currency {
 
 export default {
   state: {
-    currencies: []
+    currencies: [
+      {
+        numCode: '1',
+        charCode: '1',
+        scale: '1',
+        name: '1',
+        rate: '1'
+      }
+    ]
   },
   mutations: {
     setCurrencies (state, payload) {
