@@ -13,14 +13,14 @@
             <v-container grid-list-md>
               <v-layout row wrap>
                 <v-flex xs2 lg2 pt-4>
-                  <!-- добавить loading на кнопку -->
                   <v-btn
                     block
                     depressed
                     color="rgba(0, 0, 0, 0.1)"
                     @click="downloadCurrencies"
+                    :loading="getLoading"
                   >
-                    Download
+                    Show
                   </v-btn>
                 </v-flex>
                 <v-flex xs4 lg4>
@@ -63,13 +63,13 @@
           </v-card-actions>
 
           <v-card-text>
-            <!-- добавить loading и к таблице -->
             <v-data-table
               :headers="headers"
               :items="computedCurrencies"
               :search="search"
               class="elevation-0"
               :dark=this.$store.getters.getDark
+              :loading="getLoading"
             >
               <template slot="headerCell" slot-scope="props">
                 <v-tooltip bottom>
@@ -77,6 +77,8 @@
                   <span> {{props.header.text}} </span>
                 </v-tooltip>
               </template>
+
+              <v-progress-linear slot="progress" color="blue" indeterminate></v-progress-linear>
 
               <template slot="items" slot-scope="props">
                 <td class="text-xs-left">{{ props.item.numCode }}</td>
@@ -109,12 +111,52 @@
         {text: 'Scale', value: 'scale'},
         {text: 'Name', value: 'name'},
         {text: 'Rate', value: 'rate'}
-      ]
+      ],
+      loading: false
     }),
     methods: {
       downloadCurrencies () {
-        // не получает объект с валютами из функции getXML
-        this.$store.dispatch('setCurrencies', getXML(this.date))
+        // let that = this нужно написать,
+        // чтобы была возможность обратиться к объекту this внутри функции,
+        // потому что иногда это не получается
+        let that = this
+
+        let url = 'http://www.nbrb.by/Services/XmlExRates.aspx'
+        if (this.date != null) {
+          url += '?ondate=' + this.date
+        }
+
+        let currencies = []
+
+        let xhr = new XMLHttpRequest()
+        xhr.open('GET', url, true)
+        xhr.send()
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState !== 4) return
+          if (xhr.status !== 200) {
+            console.log(xhr.status + ': ' + xhr.statusText)
+          } else {
+            try {
+              let xml = xhr.responseXML
+              let x = xml.getElementsByTagName('Currency')
+
+              for (let i = 0; i < x.length; i++) {
+                currencies.push(
+                  {
+                    numCode: x[i].getElementsByTagName('NumCode')[0].childNodes[0].nodeValue,
+                    charCode: x[i].getElementsByTagName('CharCode')[0].childNodes[0].nodeValue,
+                    scale: x[i].getElementsByTagName('Scale')[0].childNodes[0].nodeValue,
+                    name: x[i].getElementsByTagName('Name')[0].childNodes[0].nodeValue,
+                    rate: x[i].getElementsByTagName('Rate')[0].childNodes[0].nodeValue
+                  }
+                )
+              }
+            } catch (e) {
+              console.log(e.message)
+            }
+          }
+          that.$store.dispatch('setCurrencies', currencies)
+        }
       },
       formatDate (date) {
         if (!date) return null
@@ -135,52 +177,14 @@
       },
       computedCurrencies () {
         return this.$store.getters.getCurrencies
+      },
+      getLoading () {
+        return this.$store.getters.getLoading
       }
     },
     watch: {
       date (val) {
         this.dateFormatted = this.formatDate(this.date)
-      }
-    }
-  }
-
-  function getXML (date) {
-    let url = 'http://www.nbrb.by/Services/XmlExRates.aspx'
-
-    if (date != null) {
-      url += '?ondate=' + date
-    }
-
-    let xhr = new XMLHttpRequest()
-    let currencies = null
-    xhr.open('GET', url, true)
-    xhr.send()
-    xhr.onreadystatechange = function () {
-      if (xhr.readyState !== 4) return
-      if (xhr.status !== 200) {
-        console.log(xhr.status + ': ' + xhr.statusText)
-      } else {
-        try {
-          currencies = xhr.responseXML
-          let x = currencies.getElementsByTagName('Currency')
-
-          currencies = []
-
-          for (let i = 0; i < x.length; i++) {
-            currencies.push(
-              {
-                numCode: x[i].getElementsByTagName('NumCode')[0].childNodes[0].nodeValue,
-                charCode: x[i].getElementsByTagName('CharCode')[0].childNodes[0].nodeValue,
-                scale: x[i].getElementsByTagName('Scale')[0].childNodes[0].nodeValue,
-                name: x[i].getElementsByTagName('Name')[0].childNodes[0].nodeValue,
-                rate: x[i].getElementsByTagName('Rate')[0].childNodes[0].nodeValue
-              }
-            )
-          }
-          return currencies
-        } catch (e) {
-          console.log(e.message)
-        }
       }
     }
   }
