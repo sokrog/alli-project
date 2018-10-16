@@ -2,7 +2,7 @@
   <v-container grid-list-xl fluid pa-3>
     <v-layout row wrap>
       <v-flex>
-        <h2 class="text--primary">This is Currencies</h2>
+        <h2 class="text--primary">Currencies</h2>
 
         <v-card
           color="rgba(0, 0, 0, 0.1)"
@@ -67,7 +67,7 @@
               :headers="headers"
               :items="computedCurrencies"
               :search="search"
-              class="elevation-0"
+              class="elevation-0 dtable"
               :dark=this.$store.getters.getDark
               :loading="getLoading"
             >
@@ -190,5 +190,9 @@
   }
 </script>
 
-<style scoped>
+<style scoped lang="stylus">
+  .dtable
+    background-color black!important
+    opacity 0.65
+    border-color transparent!important
 </style>
