@@ -2,7 +2,7 @@
   <v-container grid-list-xl fluid pa-3>
     <v-layout row wrap>
       <v-flex>
-        <h2 class="text--primary">Currencies</h2>
+        <h1 class="text--primary">Currencies</h1>
 
         <v-card
           color="rgba(0, 0, 0, 0.1)"
@@ -67,7 +67,7 @@
               :headers="headers"
               :items="computedCurrencies"
               :search="search"
-              class="elevation-0 dtable"
+              class="elevation-0 mytable dtable"
               :dark=this.$store.getters.getDark
               :loading="getLoading"
             >
@@ -134,7 +134,7 @@
         xhr.onreadystatechange = function () {
           if (xhr.readyState !== 4) return
           if (xhr.status !== 200) {
-            console.log(xhr.status + ': ' + xhr.statusText)
+            // console.log(xhr.status + ': ' + xhr.statusText)
           } else {
             try {
               let xml = xhr.responseXML
@@ -192,7 +192,12 @@
 
 <style scoped lang="stylus">
   .dtable
-    background-color black!important
-    opacity 0.65
-    border-color transparent!important
+    opacity 0.90
+  /*.mytable .v-table tbody tr:not(:last-child) {*/
+  /*border-bottom: none;*/
+  /*}*/
+  /*работает, но не на все элементы, не работает с scoped*/
+  /*.mytable .v-table{*/
+  /*background-color: rgba(255,255,255,0.4);*/
+  /*}*/
 </style>
