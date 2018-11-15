@@ -67,7 +67,7 @@
               :headers="headers"
               :items="computedCurrencies"
               :search="search"
-              class="elevation-0 mytable dtable"
+              class="elevation-0 dtable"
               :dark=this.$store.getters.getDark
               :loading="getLoading"
             >
@@ -192,7 +192,7 @@
 
 <style scoped lang="stylus">
   .dtable
-    opacity 0.90
+    opacity 0.80
   /*.mytable .v-table tbody tr:not(:last-child) {*/
   /*border-bottom: none;*/
   /*}*/

@@ -35,7 +35,8 @@
       items: [
         {title: 'Dashboard', icon: 'dashboard', url: '/'},
         {title: 'Currencies', icon: 'euro_symbol', url: '/currencies'},
-        {title: 'Creditors', icon: 'credit_card', url: '/creditors'}
+        {title: 'Creditors', icon: 'credit_card', url: '/creditors'},
+        {title: 'Russian Documents', icon: 'chrome_reader_mode', url: '/rfdocs'}
       ]
     })
   }

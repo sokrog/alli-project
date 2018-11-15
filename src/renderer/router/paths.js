@@ -19,6 +19,13 @@ export default [
     )
   },
   {
+    path: '/rfdocs',
+    name: 'rfdocs',
+    component: () => import(
+      `@/components/RFDocuments.vue`
+    )
+  },
+  {
     path: '*',
     redirect: '/'
   }
