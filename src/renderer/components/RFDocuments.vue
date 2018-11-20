@@ -17,10 +17,10 @@
                                             block
                                             depressed
                                             color="rgba(0, 0, 0, 0.1)"
-                                            @click="exportXLS"
+                                            @click="refreshDocs"
                                             :loading="getLoading"
                                     >
-                                        Export
+                                        Refresh
                                     </v-btn>
                                 </v-flex>
                             </v-layout>
@@ -30,7 +30,7 @@
                     <v-card-text>
                         <v-data-table
                                 :headers="headers"
-                                :items="testItems"
+                                :items="getDocs"
                                 class="elevation-0 dtable"
                                 :dark=this.$store.getters.getDark
                                 :loading="getLoading"
@@ -57,47 +57,25 @@
 </template>
 
 <script>
-  import XLSX from 'xlsx'
-
   export default {
     data: () => ({
-      testItems: [
-        {item: 'Item1', property: 'Prop1'},
-        {item: 'Item2', property: 'Prop2'},
-        {item: 'Item3', property: 'Prop3'}
-      ],
+      loading: false,
       headers: [
         {text: 'Name', value: 'name'},
         {text: 'Property', value: 'prop'}
-      ],
-      loading: false,
-      filename: 'excel/rfdocs.xlsx'
+      ]
     }),
     methods: {
-      exportXLS () {
-        // export json to Worksheet of Excel
-        // only array possible
-
-        /* Initial row */
-        var ws = XLSX.utils.json_to_sheet([{name: 'Name', prop: 'Property'}], {skipHeader: true})
-
-        /* Write data starting at A2 */
-        XLSX.utils.sheet_add_json(ws, this.testItems, {skipHeader: true, origin: 'A2'})
-
-        // A workbook is the name given to an Excel file
-        var wb = XLSX.utils.book_new() // make Workbook of Excel
-
-        // add Worksheet to Workbook
-        // Workbook contains one or more worksheets
-        XLSX.utils.book_append_sheet(wb, ws, 'docs') // sheetAName is name of Worksheet
-
-        // export Excel file
-        XLSX.writeFile(wb, this.filename) // name of the file is 'rfdocs.xlsx'
+      refreshDocs () {
+        return this.$store.getters.getDocs
       }
     },
     computed: {
       getLoading () {
         return this.$store.getters.getLoading
+      },
+      getDocs () {
+        return this.$store.getters.getDocs
       }
     }
   }
