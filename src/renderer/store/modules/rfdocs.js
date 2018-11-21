@@ -13,13 +13,41 @@ class Doc {
 export default {
   state: {
     docs: [
-      {item: 'Item1', property: 'Prop1'},
-      {item: 'Item2', property: 'Prop2'},
-      {item: 'Item3', property: 'Prop3'}
+      {number: '001', date: '12/04/1994', buyer: 'AUTOKADA', amount: '10000', returns: false, transf: true, scan: 'scan'},
+      {number: '002', date: '13/04/1994', buyer: 'AUTOKADA', amount: '10000', returns: false, transf: true, scan: 'scan'},
+      {number: '003', date: '14/04/1994', buyer: 'AUTOKADA', amount: '500.25', returns: false, transf: true, scan: 'scan'},
+      {number: '004', date: '15/04/1994', buyer: 'AUTOKADA', amount: '10000', returns: false, transf: true, scan: 'scan'},
+      {number: '005', date: '16/04/1994', buyer: 'AUTOKADA', amount: '10000', returns: true, transf: true, scan: 'scan'},
+      {number: '006', date: '17/04/1994', buyer: 'AUTOKADA', amount: '10000', returns: false, transf: true, scan: 'scan'},
+      {number: '007', date: '18/04/1994', buyer: 'AUTOKADA', amount: '500.25', returns: false, transf: true, scan: 'scan'},
+      {number: '008', date: '19/04/1994', buyer: 'AUTOKADA', amount: '10000', returns: false, transf: true, scan: 'scan'},
+      {number: '009', date: '19/04/1994', buyer: 'AUTOKADA', amount: '10000', returns: false, transf: true, scan: 'scan'},
+      {number: '010', date: '19/04/1994', buyer: 'AUTOKADA', amount: '10000', returns: false, transf: true, scan: 'scan'},
+      {number: '011', date: '19/04/1994', buyer: 'AUTOKADA', amount: '10000', returns: false, transf: true, scan: 'scan'},
+      {number: '012', date: '19/04/1994', buyer: 'AUTOKADA', amount: '10000', returns: false, transf: true, scan: 'scan'},
+      {number: '013', date: '19/04/1994', buyer: 'AUTOKADA', amount: '10000', returns: false, transf: true, scan: 'scan'},
+      {number: '014', date: '19/04/1994', buyer: 'AUTOKADA', amount: '10000', returns: false, transf: true, scan: 'scan'},
+      {number: '015', date: '19/04/1994', buyer: 'AUTOKADA', amount: '10000', returns: false, transf: true, scan: 'scan'},
+      {number: '016', date: '19/04/1994', buyer: 'AUTOKADA', amount: '10000', returns: false, transf: true, scan: 'scan'},
+      {number: '017', date: '19/04/1994', buyer: 'AUTOKADA', amount: '10000', returns: false, transf: true, scan: 'scan'},
+      {number: '018', date: '19/04/1994', buyer: 'AUTOKADA', amount: '10000', returns: false, transf: true, scan: 'scan'},
+      {number: '019', date: '19/04/1994', buyer: 'AUTOKADA', amount: '10000', returns: false, transf: true, scan: 'scan'},
+      {number: '020', date: '19/04/1994', buyer: 'AUTOKADA', amount: '10000', returns: false, transf: true, scan: 'scan'},
+      {number: '021', date: '19/04/1994', buyer: 'AUTOKADA', amount: '10000', returns: false, transf: true, scan: 'scan'},
+      {number: '022', date: '19/04/1994', buyer: 'AUTOKADA', amount: '10000', returns: false, transf: true, scan: 'scan'},
+      {number: '023', date: '19/04/1994', buyer: 'AUTOKADA', amount: '10000', returns: false, transf: true, scan: 'scan'},
+      {number: '024', date: '19/04/1994', buyer: 'AUTOKADA', amount: '10000', returns: false, transf: true, scan: 'scan'},
+      {number: '025', date: '19/04/1994', buyer: 'AUTOKADA', amount: '10000', returns: false, transf: true, scan: 'scan'},
+      {number: '026', date: '20/04/1994', buyer: 'AUTOKADA', amount: '10000', returns: false, transf: true, scan: 'scan'}
     ],
     headers: [
-      {text: 'Name', value: 'name'},
-      {text: 'Property', value: 'prop'}
+      {text: 'Number', value: 'number'},
+      {text: 'Date', value: 'date'},
+      {text: 'Buyer', value: 'buyer'},
+      {text: 'Amount', value: 'amount'},
+      {text: 'Returns', value: 'returns'},
+      {text: 'Transffered', value: 'transf'},
+      {text: 'Scan', value: 'scan'}
     ],
     filename: 'excel/rfdocs.xlsx'
   },
@@ -93,6 +121,9 @@ export default {
     },
     getDocs (state) {
       return state.docs
+    },
+    getHeaders (state) {
+      return state.headers
     }
   }
 }
