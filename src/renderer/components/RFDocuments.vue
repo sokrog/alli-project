@@ -2,32 +2,39 @@
     <v-container fluid pa-3>
         <v-layout>
             <v-flex>
-                <h1 class="text--primary">Russian Documents</h1>
-
                 <v-card
                         color="rgba(0, 0, 0, 0.1)"
                         flat
                 >
                     <v-card-actions>
-                        <v-container grid-list-md>
-                            <v-layout row wrap>
-                                <v-flex xs2 lg2>
-                                    <!--добавить группу кнопок-->
+                        <v-toolbar dense flat class="transparent">
+                            <v-layout row>
+                                <v-flex xs4 lg4 mt-2>
                                     <v-btn
-                                            block
+                                            color="rgba(0, 0, 0, 0.1)"
+                                            @click=""
+                                            :loading="getLoading"
+                                            round
                                             depressed
+                                    >
+                                        <v-icon left>add_circle</v-icon>
+                                        Add
+                                    </v-btn>
+                                    <v-btn
                                             color="rgba(0, 0, 0, 0.1)"
                                             @click="refreshDocs"
                                             :loading="getLoading"
+                                            round
+                                            depressed
                                     >
+                                        <v-icon left>loop</v-icon>
                                         Refresh
                                     </v-btn>
                                 </v-flex>
 
-                                <v-flex>
-                                </v-flex>
+                                <v-spacer></v-spacer>
 
-                                <v-flex xs6 lg6>
+                                <v-flex xs3 lg3>
                                     <v-text-field
                                             v-model="search"
                                             append-icon="search"
@@ -37,7 +44,7 @@
                                     ></v-text-field>
                                 </v-flex>
                             </v-layout>
-                        </v-container>
+                        </v-toolbar>
                     </v-card-actions>
 
                     <v-card-text>
@@ -51,7 +58,7 @@
                                         :dark=this.$store.getters.getDark
                                         :loading="getLoading"
                                         :no-data-text="noDataText"
-                                        :no-results-text="noResulttext"
+                                        :no-results-text="noResultText"
                                         hide-actions
                                         :pagination.sync="pagination"
                                 >
@@ -69,9 +76,45 @@
                                         <td class="text-xs-left">{{props.item.date}}</td>
                                         <td class="text-xs-left">{{props.item.buyer}}</td>
                                         <td class="text-xs-left">{{props.item.amount}}</td>
-                                        <td class="text-xs-left">{{props.item.returns}}</td>
-                                        <td class="text-xs-left">{{props.item.transf}}</td>
+                                        <td class="text-xs-left">
+                                            <v-checkbox
+                                                    :input-value="props.item.returns"
+                                                    color="black"
+                                                    disabled
+                                                    style="height: 30px"
+                                            ></v-checkbox>
+                                        </td>
+                                        <td class="align-center">
+                                            <v-checkbox
+                                                    :input-value="props.item.transf"
+                                                    color="black"
+                                                    disabled
+                                                    style="height: 30px"
+                                            ></v-checkbox>
+                                        </td>
                                         <td class="text-xs-left">{{props.item.scan}}</td>
+                                        <td class="text-xs-left">
+                                            <v-btn
+                                                    @click=""
+                                                    :loading="getLoading"
+                                                    depressed
+                                                    flat
+                                                    small
+                                                    icon
+                                            >
+                                                <v-icon small>edit</v-icon>
+                                            </v-btn>
+                                            <v-btn
+                                                    @click=""
+                                                    :loading="getLoading"
+                                                    depressed
+                                                    flat
+                                                    small
+                                                    icon
+                                            >
+                                                <v-icon small>delete</v-icon>
+                                            </v-btn>
+                                        </td>
                                     </template>
                                 </v-data-table>
                             </scrolly-viewport>
@@ -101,8 +144,18 @@
         totalItems: 0
       },
       noDataText: 'Table is empty',
-      noResulttext: 'Can\'t find it',
-      search: ''
+      noResultText: 'Can\'t find it',
+      search: '',
+      headers: [
+        {text: 'Number', value: 'number', width: 100},
+        {text: 'Date', value: 'date'},
+        {text: 'Buyer', value: 'buyer'},
+        {text: 'Amount', value: 'amount'},
+        {text: 'Returns', value: 'returns'},
+        {text: 'Transffered', value: 'transf'},
+        {text: 'Scan', value: 'scan', sortable: false},
+        {text: 'Edit/Delete', value: 'actions', width: 160, sortable: false}
+      ]
     }),
     methods: {
       refreshDocs () {
@@ -117,7 +170,7 @@
         return this.$store.getters.getDocs
       },
       getHeaders () {
-        return this.$store.getters.getHeaders
+        return this.headers
       }
     }
   }

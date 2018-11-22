@@ -80,9 +80,6 @@ export default {
           )
         })
 
-        // export json to Worksheet of Excel
-        // only array possible
-
         /* Initial row */
         var ws = XLSX.utils.json_to_sheet([{name: 'Name', prop: 'Property'}], {skipHeader: true})
 
@@ -110,6 +107,8 @@ export default {
     async markAsTransffered () {
     },
     async deleteDoc () {
+    },
+    async addDoc () {
     }
   },
   getters: {
