@@ -8,7 +8,7 @@
                             <v-flex>
                                 <v-btn
                                         color="rgba(0, 0, 0, 0.1)"
-                                        @click=""
+                                        @click="init"
                                         :loading="getLoading"
                                         round
                                         depressed
@@ -133,6 +133,28 @@
                     <scrolly-bar axis="y"></scrolly-bar>
                 </scrolly>
             </v-flex>
+            <v-flex>
+                <!-- Нужно добавить и сообщения об успешном выполнении операции, но только на главное окно -->
+                <template v-if="error">
+                    <v-snackbar
+                            :timeout="5000"
+                            @input="closeError"
+                            color="red darken-1"
+                            :value="true"
+                    >
+                        {{error}}
+                        <v-btn
+                                dark
+                                flat
+                                round
+                                @click="closeError"
+                        >
+                            Close
+                        </v-btn>
+                    </v-snackbar>
+                </template>
+            </v-flex>
+
         </v-layout>
     </v-container>
 </template>
@@ -170,6 +192,12 @@
     methods: {
       refreshDocs () {
         return this.$store.getters.getDocs
+      },
+      init () {
+        this.$store.dispatch('initialXLSX')
+      },
+      closeError () {
+        this.$store.dispatch('clearError')
       }
     },
     computed: {
@@ -181,6 +209,9 @@
       },
       getHeaders () {
         return this.headers
+      },
+      error () {
+        return this.$store.getters.error
       }
     }
   }
