@@ -2,7 +2,7 @@
     <v-container fluid pa-0 fill-height>
         <v-layout column>
             <v-flex ml-2 mr-2 mt-2>
-                <v-layout row style="background-color: rgba(0,0,0,0.10)">
+                <v-layout row class="bcg-color">
                     <v-flex pl-1>
                         <v-layout column mt-1>
                             <v-flex>
@@ -48,7 +48,7 @@
                 </v-layout>
             </v-flex>
 
-            <v-flex xs11 md11 lg11 ml-2 mr-2 mb-2 mt-0 pa-2 style="background-color: rgba(0,0,0,0.10)">
+            <v-flex xs11 md11 lg11 ml-2 mr-2 mb-2 mt-0 pa-2 class="bcg-color">
                 <scrolly class="table-scroll" :passive-scroll="true">
                     <scrolly-viewport>
                         <v-data-table
@@ -218,6 +218,9 @@
 </script>
 
 <style scoped lang="stylus">
+
+    .bcg-color
+       // background-color: rgba(0,0,0,0.10)
 
     .dtable
         opacity 0.75
