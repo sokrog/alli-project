@@ -1,12 +1,14 @@
 import XLSX from 'xlsx'
 
 class Doc {
-  constructor (number, date, buyer, amount, returns = false, transf = false, scan = '') {
+  constructor (number, date, buyer, amount, returns, transf, scan) {
     this.number = number
     this.date = date
     this.buyer = buyer
     this.amount = amount
     this.scan = scan
+    this.returns = returns
+    this.transf = transf
   }
 }
 
@@ -275,40 +277,25 @@ export default {
 
       const result = []
       try {
-        // здесь нужно получить массив тех элементов что мне нужны
-
-        const docs = []
+        let wb = XLSX.readFile(FILENAME)
+        const docs = XLSX.utils.sheet_to_json(wb.Sheets['docs'])
 
         Object.keys(docs).forEach(key => {
           const o = docs[key]
           result.push(
             new Doc(
-              o.number,
-              o.date,
-              o.buyer,
-              o.amount,
-              o.returns,
-              o.transf,
-              o.scan
+              o.Number,
+              o.Date,
+              o.Buyer,
+              o.Amount,
+              o.Returns,
+              o.Transffered,
+              o.Scan
             )
           )
         })
 
-        /* Initial row */
-        // var ws = XLSX.utils.json_to_sheet([{name: 'Name', prop: 'Property'}], {skipHeader: true})
-
-        /* Write data starting at A2 */
-        // XLSX.utils.sheet_add_json(ws, this.testItems, {skipHeader: true, origin: 'A2'})
-
-        // A workbook is the name given to an Excel file
-        // var wb = XLSX.utils.book_new() // make Workbook of Excel
-
-        // add Worksheet to Workbook
-        // Workbook contains one or more worksheets
-        // XLSX.utils.book_append_sheet(wb, ws, 'docs') // sheetAName is name of Worksheet
-
-        // export Excel file
-        // XLSX.writeFile(wb, this.filename) // name of the file is 'rfdocs.xlsx'
+        console.log(result)
 
         commit('loadDocs', result)
         commit('setLoading', false)
@@ -317,6 +304,22 @@ export default {
         commit('setError', e.message)
       }
     },
+
+    /* Initial row */
+    // var ws = XLSX.utils.json_to_sheet([{name: 'Name', prop: 'Property'}], {skipHeader: true})
+
+    /* Write data starting at A2 */
+    // XLSX.utils.sheet_add_json(ws, this.testItems, {skipHeader: true, origin: 'A2'})
+
+    // A workbook is the name given to an Excel file
+    // var wb = XLSX.utils.book_new() // make Workbook of Excel
+
+    // add Worksheet to Workbook
+    // Workbook contains one or more worksheets
+    // XLSX.utils.book_append_sheet(wb, ws, 'docs') // sheetAName is name of Worksheet
+
+    // export Excel file
+    // XLSX.writeFile(wb, this.filename) // name of the file is 'rfdocs.xlsx'
 
     // Отбор тех документов, что еще не вернулись
     async markAsReturns () {
