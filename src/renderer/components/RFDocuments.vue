@@ -212,6 +212,9 @@
       init () {
         this.$store.dispatch('fetchDocs')
       }
+    },
+    created: function () {
+      this.$store.dispatch('fetchDocs')
     }
   }
 </script>
