@@ -6,10 +6,6 @@
   "license": null,
   "main": "./dist/electron/main.js",
   "scripts": {
-//    не работают как надо, собирают но потом проекты не запускаются
-//    "package": "npm-run-all package:*",
-//    "package:32": "electron-packager . --platform=win32 --arch=ia32 AlliProject",
-//    "package:64": "electron-packager . --platform=win32 --arch=x64 AlliProject",
     "build": "node .electron-vue/build.js && electron-builder",
     "build:dir": "node .electron-vue/build.js && electron-builder --dir",
     "build:clean": "cross-env BUILD_TARGET=clean node .electron-vue/build.js",
@@ -51,7 +47,16 @@
       "icon": "build/icons/icon.icns"
     },
     "win": {
-      "icon": "build/icons/icon.ico"
+      "icon": "build/icons/icon.ico",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        }
+      ]
     },
     "linux": {
       "icon": "build/icons"
