@@ -19,10 +19,10 @@ export default [
     )
   },
   {
-    path: '/rfdocs',
-    name: 'rfdocs',
+    path: '/rf',
+    name: 'rf',
     component: () => import(
-      `@/components/RFDocuments.vue`
+      `@/components/rf/RF.vue`
     )
   },
   {
