@@ -48,200 +48,44 @@
         </v-layout>
       </v-flex>
 
-      <v-flex xs11 md11 lg11 ml-2 mr-2 mb-2 mt-0 pa-2 class="bcg-color">
-        <scrolly class="table-scroll" :passive-scroll="true">
-          <scrolly-viewport>
-            <v-data-table
-                :headers="getHeaders"
-                :items="getDocs"
-                :search="search"
-                class="elevation-0 dtable"
-                :dark=this.$store.getters.getDark
-                :loading="getLoading"
-                :no-data-text="noDataText"
-                :no-results-text="noResultText"
-                hide-actions
-                :pagination.sync="pagination"
-            >
-              <template slot="headerCell" slot-scope="props">
-                <v-tooltip bottom>
-                  <span slot="activator"> {{props.header.text}} </span>
-                  <span> {{props.header.text}} </span>
-                </v-tooltip>
-              </template>
-
-              <v-progress-linear slot="progress" color="blue" indeterminate></v-progress-linear>
-
-              <template slot="items" slot-scope="props">
-                <td class="text-xs-left">{{props.item.number}}</td>
-                <td class="text-xs-left">{{props.item.date}}</td>
-                <td class="text-xs-left">{{props.item.buyer}}</td>
-                <td class="text-xs-left">{{props.item.amount}}</td>
-                <td class="text-xs-left">
-                  <v-checkbox
-                      :input-value="props.item.returns"
-                      color="black"
-                      disabled
-                      style="height: 30px"
-                  ></v-checkbox>
-                </td>
-                <td class="align-center">
-                  <v-checkbox
-                      :input-value="props.item.transf"
-                      color="black"
-                      disabled
-                      style="height: 30px"
-                  ></v-checkbox>
-                </td>
-                <td class="text-xs-left">
-                  <v-btn
-                      :to="props.item.scan"
-                      @click=""
-                      :loading="getLoading"
-                      flat
-                      small
-                      round
-                  >
-                    Scan
-                  </v-btn>
-                </td>
-                <td class="text-xs-left">
-                  <v-btn
-                      @click=""
-                      :loading="getLoading"
-                      depressed
-                      flat
-                      small
-                      icon
-                  >
-                    <v-icon small>edit</v-icon>
-                  </v-btn>
-                  <v-btn
-                      @click=""
-                      :loading="getLoading"
-                      depressed
-                      flat
-                      small
-                      icon
-                  >
-                    <v-icon small>delete</v-icon>
-                  </v-btn>
-                </td>
-              </template>
-            </v-data-table>
-          </scrolly-viewport>
-          <scrolly-bar axis="y"></scrolly-bar>
-        </scrolly>
+      <v-flex xs11 md11 lg11 ml-2 mr-2 mb-2 mt-0 pa-2>
+        <r-f-table></r-f-table>
       </v-flex>
+
       <v-flex>
-        <!-- Нужно добавить и сообщения об успешном выполнении операции, но только на главное окно -->
-        <template v-if="error">
-          <v-snackbar
-              :timeout="5000"
-              @input="closeError"
-              color="red darken-1"
-              :value="true"
-          >
-            {{error}}
-            <v-btn
-                dark
-                flat
-                round
-                @click="closeError"
-            >
-              Close
-            </v-btn>
-          </v-snackbar>
-        </template>
+        <the-message></the-message>
       </v-flex>
     </v-layout>
   </v-container>
 </template>
 
 <script>
-  import {Scrolly, ScrollyViewport, ScrollyBar} from 'vue-scrolly'
+  import TheMessage from '../messages/TheMessage'
+  import RFTable from './RFTable'
 
   export default {
     components: {
-      Scrolly,
-      ScrollyViewport,
-      ScrollyBar
+      TheMessage,
+      RFTable
     },
     data: () => ({
       loading: false,
-      pagination: {
-        page: 1,
-        rowsPerPage: -1, // -1 for All
-        totalItems: 0
-      },
-      noDataText: 'Table is empty',
-      noResultText: 'Can\'t find it',
-      search: '',
-      headers: [
-        {text: 'Number', value: 'number', width: 100},
-        {text: 'Date', value: 'date'},
-        {text: 'Buyer', value: 'buyer'},
-        {text: 'Amount', value: 'amount'},
-        {text: 'Returns', value: 'returns', width: 100},
-        {text: 'Transffered', value: 'transf', width: 100},
-        {text: 'Scan', value: 'scan', sortable: false, width: 100, align: 'center'},
-        {text: 'Edit/Delete', value: 'actions', width: 160, sortable: false}
-      ]
+      search: ''
     }),
     methods: {
       refreshDocs () {
         return this.$store.getters.getDocs
-      },
-      closeError () {
-        this.$store.dispatch('clearError')
       }
     },
     computed: {
       getLoading () {
         return this.$store.getters.getLoading
-      },
-      getDocs () {
-        return this.$store.getters.getDocs
-      },
-      getHeaders () {
-        return this.headers
-      },
-      error () {
-        return this.$store.getters.error
-      },
-      init () {
-        this.$store.dispatch('fetchDocs')
       }
-    },
-    created: function () {
-      this.$store.dispatch('fetchDocs')
     }
   }
 </script>
 
 <style scoped lang="stylus">
 
-  .bcg-color
-    // background-color: rgba(0,0,0,0.10)
 
-    .dtable
-      opacity 0.75
-
-    /* Height of the table row*/
-    table.v-table tbody td, table.v-table tbody th {
-      height: 30px;
-    }
-
-    .table-scroll {
-      width: 100%;
-      height: 100%;
-    }
-
-  /*.mytable .v-table tbody tr:not(:last-child) {*/
-  /*border-bottom: none;*/
-  /*}*/
-  /*работает, но не на все элементы, не работает с scoped*/
-  /*.mytable .v-table{*/
-  /*background-color: rgba(255,255,255,0.4);*/
-  /*}*/
 </style>

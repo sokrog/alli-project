@@ -295,8 +295,6 @@ export default {
           )
         })
 
-        console.log(result)
-
         commit('loadDocs', result)
         commit('setLoading', false)
       } catch (e) {
