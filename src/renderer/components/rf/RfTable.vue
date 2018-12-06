@@ -4,7 +4,7 @@
       <v-data-table
           :headers="getHeaders"
           :items="getDocs"
-          :search="search"
+          :search="getSearch"
           class="elevation-0 dtable"
           :dark=this.$store.getters.getDark
           :loading="getLoading"
@@ -102,7 +102,6 @@
       },
       noDataText: 'Table is empty',
       noResultText: 'Can\'t find it',
-      search: '',
       headers: [
         {text: 'Number', value: 'number', width: 100},
         {text: 'Date', value: 'date'},
@@ -123,6 +122,9 @@
       },
       getDocs () {
         return this.$store.getters.getDocs
+      },
+      getSearch () {
+        return this.$store.getters.getSearch
       }
     },
     created: function () {
@@ -131,7 +133,7 @@
   }
 </script>
 
-<style lang="stylus">
+<style scoped lang="stylus">
   .dtable
     opacity 0.75
 

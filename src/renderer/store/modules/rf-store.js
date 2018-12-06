@@ -16,242 +16,7 @@ const FILENAME = 'excel/rfdocs.xlsx'
 
 export default {
   state: {
-    docs: [
-      // {
-      //   number: '001',
-      //   date: '12/04/1994',
-      //   buyer: 'AUTOKADA',
-      //   amount: '10000',
-      //   returns: false,
-      //   transf: true,
-      //   scan: 'scan'
-      // },
-      // {
-      //   number: '002',
-      //   date: '13/04/1994',
-      //   buyer: 'AUTOKADA',
-      //   amount: '10000',
-      //   returns: false,
-      //   transf: true,
-      //   scan: 'scan'
-      // },
-      // {
-      //   number: '003',
-      //   date: '14/04/1994',
-      //   buyer: 'AUTOKADA',
-      //   amount: '500.25',
-      //   returns: false,
-      //   transf: true,
-      //   scan: 'scan'
-      // },
-      // {
-      //   number: '004',
-      //   date: '15/04/1994',
-      //   buyer: 'AUTOKADA',
-      //   amount: '10000',
-      //   returns: false,
-      //   transf: true,
-      //   scan: 'scan'
-      // },
-      // {
-      //   number: '005',
-      //   date: '16/04/1994',
-      //   buyer: 'AUTOKADA',
-      //   amount: '10000',
-      //   returns: true,
-      //   transf: true,
-      //   scan: 'scan'
-      // },
-      // {
-      //   number: '006',
-      //   date: '17/04/1994',
-      //   buyer: 'AUTOKADA',
-      //   amount: '10000',
-      //   returns: false,
-      //   transf: true,
-      //   scan: 'scan'
-      // },
-      // {
-      //   number: '007',
-      //   date: '18/04/1994',
-      //   buyer: 'AUTOKADA',
-      //   amount: '500.25',
-      //   returns: false,
-      //   transf: true,
-      //   scan: 'scan'
-      // },
-      // {
-      //   number: '008',
-      //   date: '19/04/1994',
-      //   buyer: 'AUTOKADA',
-      //   amount: '10000',
-      //   returns: false,
-      //   transf: true,
-      //   scan: 'scan'
-      // },
-      // {
-      //   number: '009',
-      //   date: '19/04/1994',
-      //   buyer: 'AUTOKADA',
-      //   amount: '10000',
-      //   returns: false,
-      //   transf: true,
-      //   scan: 'scan'
-      // },
-      // {
-      //   number: '010',
-      //   date: '19/04/1994',
-      //   buyer: 'AUTOKADA',
-      //   amount: '10000',
-      //   returns: false,
-      //   transf: true,
-      //   scan: 'scan'
-      // },
-      // {
-      //   number: '011',
-      //   date: '19/04/1994',
-      //   buyer: 'AUTOKADA',
-      //   amount: '10000',
-      //   returns: false,
-      //   transf: true,
-      //   scan: 'scan'
-      // },
-      // {
-      //   number: '012',
-      //   date: '19/04/1994',
-      //   buyer: 'AUTOKADA',
-      //   amount: '10000',
-      //   returns: false,
-      //   transf: true,
-      //   scan: 'scan'
-      // },
-      // {
-      //   number: '013',
-      //   date: '19/04/1994',
-      //   buyer: 'AUTOKADA',
-      //   amount: '10000',
-      //   returns: false,
-      //   transf: true,
-      //   scan: 'scan'
-      // },
-      // {
-      //   number: '014',
-      //   date: '19/04/1994',
-      //   buyer: 'AUTOKADA',
-      //   amount: '10000',
-      //   returns: false,
-      //   transf: true,
-      //   scan: 'scan'
-      // },
-      // {
-      //   number: '015',
-      //   date: '19/04/1994',
-      //   buyer: 'AUTOKADA',
-      //   amount: '10000',
-      //   returns: false,
-      //   transf: true,
-      //   scan: 'scan'
-      // },
-      // {
-      //   number: '016',
-      //   date: '19/04/1994',
-      //   buyer: 'AUTOKADA',
-      //   amount: '10000',
-      //   returns: false,
-      //   transf: true,
-      //   scan: 'scan'
-      // },
-      // {
-      //   number: '017',
-      //   date: '19/04/1994',
-      //   buyer: 'AUTOKADA',
-      //   amount: '10000',
-      //   returns: false,
-      //   transf: true,
-      //   scan: 'scan'
-      // },
-      // {
-      //   number: '018',
-      //   date: '19/04/1994',
-      //   buyer: 'AUTOKADA',
-      //   amount: '10000',
-      //   returns: false,
-      //   transf: true,
-      //   scan: 'scan'
-      // },
-      // {
-      //   number: '019',
-      //   date: '19/04/1994',
-      //   buyer: 'AUTOKADA',
-      //   amount: '10000',
-      //   returns: false,
-      //   transf: true,
-      //   scan: 'scan'
-      // },
-      // {
-      //   number: '020',
-      //   date: '19/04/1994',
-      //   buyer: 'AUTOKADA',
-      //   amount: '10000',
-      //   returns: false,
-      //   transf: true,
-      //   scan: 'scan'
-      // },
-      // {
-      //   number: '021',
-      //   date: '19/04/1994',
-      //   buyer: 'AUTOKADA',
-      //   amount: '10000',
-      //   returns: false,
-      //   transf: true,
-      //   scan: 'scan'
-      // },
-      // {
-      //   number: '022',
-      //   date: '19/04/1994',
-      //   buyer: 'AUTOKADA',
-      //   amount: '10000',
-      //   returns: false,
-      //   transf: true,
-      //   scan: 'scan'
-      // },
-      // {
-      //   number: '023',
-      //   date: '19/04/1994',
-      //   buyer: 'AUTOKADA',
-      //   amount: '10000',
-      //   returns: false,
-      //   transf: true,
-      //   scan: 'scan'
-      // },
-      // {
-      //   number: '024',
-      //   date: '19/04/1994',
-      //   buyer: 'AUTOKADA',
-      //   amount: '10000',
-      //   returns: false,
-      //   transf: true,
-      //   scan: 'scan'
-      // },
-      // {
-      //   number: '025',
-      //   date: '19/04/1994',
-      //   buyer: 'AUTOKADA',
-      //   amount: '10000',
-      //   returns: false,
-      //   transf: true,
-      //   scan: 'scan'
-      // },
-      // {
-      //   number: '026',
-      //   date: '20/04/1994',
-      //   buyer: 'AUTOKADA',
-      //   amount: '10000',
-      //   returns: false,
-      //   transf: true,
-      //   scan: 'scan'
-      // }
-    ],
+    docs: [],
     headers: [
       {
         number: 'Number',
@@ -262,11 +27,15 @@ export default {
         transf: 'Transffered',
         scan: 'Scan'
       }
-    ]
+    ],
+    search: ''
   },
   mutations: {
-    loadDocs (state, payload) {
+    setDocs (state, payload) {
       state.docs = payload
+    },
+    setSearch (state, payload) {
+      state.search = payload
     }
   },
   actions: {
@@ -295,7 +64,7 @@ export default {
           )
         })
 
-        commit('loadDocs', result)
+        commit('setDocs', result)
         commit('setLoading', false)
       } catch (e) {
         commit('setLoading', false)
@@ -336,39 +105,43 @@ export default {
     },
 
     // Инициализация документа XSLX
-    async initialXLSX ({commit, state}) {
-      commit('setLoading', true)
-      commit('clearError')
+    // async initialXLSX ({commit, state}) {
+    //   commit('setLoading', true)
+    //   commit('clearError')
+    //
+    //   try {
+    //     /* Initial row */
+    //     let ws = XLSX.utils.json_to_sheet(state.headers, {skipHeader: true})
+    //
+    //     /* Write data starting at A2 */
+    //     XLSX.utils.sheet_add_json(ws, state.docs, {skipHeader: true, origin: 'A2'})
+    //
+    //     // A workbook is the name given to an Excel file
+    //     var wb = XLSX.utils.book_new() // make Workbook of Excel
+    //
+    //     // add Worksheet to Workbook
+    //     // Workbook contains one or more worksheets
+    //     XLSX.utils.book_append_sheet(wb, ws, 'docs') // sheetAName is name of Worksheet
+    //
+    //     // export Excel file
+    //     XLSX.writeFile(wb, FILENAME) // name of the file is 'rfdocs.xlsx'
+    //
+    //     commit('setLoading', false)
+    //   } catch (e) {
+    //     commit('setLoading', false)
+    //     commit('setError', e.message)
+    //   }
+    // }
 
-      try {
-        /* Initial row */
-        let ws = XLSX.utils.json_to_sheet(state.headers, {skipHeader: true})
-
-        /* Write data starting at A2 */
-        XLSX.utils.sheet_add_json(ws, state.docs, {skipHeader: true, origin: 'A2'})
-
-        // A workbook is the name given to an Excel file
-        var wb = XLSX.utils.book_new() // make Workbook of Excel
-
-        // add Worksheet to Workbook
-        // Workbook contains one or more worksheets
-        XLSX.utils.book_append_sheet(wb, ws, 'docs') // sheetAName is name of Worksheet
-
-        // export Excel file
-        XLSX.writeFile(wb, FILENAME) // name of the file is 'rfdocs.xlsx'
-
-        commit('setLoading', false)
-      } catch (e) {
-        commit('setLoading', false)
-        commit('setError', e.message)
-      }
+    changeSearch ({commit}, payload) {
+      commit('setSearch', payload)
     }
   },
   getters: {
     getReturnsDocs (state) {
       return state.docs.filter(o => o.returns)
     },
-    getUnreturnsDocs (state) {
+    getUnReturnsDocs (state) {
       return state.docs.filter(o => !o.returns)
     },
     getDocs (state) {
@@ -376,6 +149,9 @@ export default {
     },
     getHeaders (state) {
       return state.headers
+    },
+    getSearch (state) {
+      return state.search
     }
   }
 }

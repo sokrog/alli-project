@@ -22,7 +22,7 @@ export default [
     path: '/rf',
     name: 'rf',
     component: () => import(
-      `@/components/rf/RF.vue`
+      `@/components/rf/Rf.vue`
     )
   },
   {
