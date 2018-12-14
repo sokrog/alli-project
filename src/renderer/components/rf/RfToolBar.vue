@@ -5,7 +5,7 @@
         <v-flex>
           <v-btn
               color="rgba(0, 0, 0, 0.1)"
-              @click=""
+              @click="switchAddDialog"
               :loading="getLoading"
               round
               depressed
@@ -55,6 +55,9 @@
     methods: {
       changeSearch () {
         this.$store.dispatch('changeSearch', this.search)
+      },
+      switchAddDialog () {
+        this.$store.dispatch('changeAddDialog')
       }
     },
     computed: {

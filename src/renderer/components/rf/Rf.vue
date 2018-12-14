@@ -10,6 +10,7 @@
       </v-flex>
 
       <v-flex>
+        <rf-add></rf-add>
         <the-message></the-message>
       </v-flex>
     </v-layout>
@@ -20,17 +21,24 @@
   import TheMessage from '../messages/TheMessage'
   import RfTable from './RfTable'
   import RfToolBar from './RfToolBar'
+  import RfAdd from './RfAdd'
+  import RfEdit from './RfEdit'
 
   export default {
+    data: () => ({
+      addDialog: false,
+      editDialog: false
+    }),
     components: {
       TheMessage,
       RfTable,
-      RfToolBar
+      RfToolBar,
+      RfAdd,
+      RfEdit
     }
   }
 </script>
 
 <style scoped lang="stylus">
-
 
 </style>
