@@ -1,25 +1,55 @@
 <template>
   <v-dialog v-model="addDialog" persistent max-width="600px">
-    <v-form ref="form" v-model="valid" lazy-validation>
-      <v-text-field
-          prepend-icon="person"
-          name="number"
-          label="Number"
-          type="text"
-          :counter="3"
-          v-model="number"
-          :rules="numberRules"
-      ></v-text-field>
-      <v-btn
-          color="rgba(0, 0, 0, 0.1)"
-          @click="switchAddDialog"
-          round
-          depressed
-          small
-      >
-        Cancel
-      </v-btn>
-    </v-form>
+    <v-card color="rgba(255, 255, 255, 0.75)">
+      <v-card-title class="pb-0">
+        <span class="headline">New document</span>
+      </v-card-title>
+      <v-card-text class="pt-0 pb-5">
+        <v-form ref="form" v-model="valid" validation>
+          <v-container grid-list-md>
+            <v-layout wrap>
+              <v-flex xs12>
+                <v-text-field
+                    prepend-icon="list"
+                    name="number"
+                    label="Number"
+                    type="text"
+                    :counter="3"
+                    v-model="number"
+                    required
+                    :rules="numberRules"
+                ></v-text-field>
+              </v-flex>
+            </v-layout>
+          </v-container>
+        </v-form>
+      </v-card-text>
+      <v-card-actions>
+        <v-layout row pb-2 pr-2>
+          <v-spacer></v-spacer>
+          <v-flex xs2 md2 lg2>
+            <v-btn
+                @click="switchAddDialog"
+                round
+                flat
+            >
+              Cancel
+            </v-btn>
+          </v-flex>
+          <v-flex xs2 md2 lg2>
+            <v-btn
+                :loading="loading"
+                :disabled="!valid || loading"
+                @click="addNewDoc"
+                round
+                flat
+            >
+              Save
+            </v-btn>
+          </v-flex>
+        </v-layout>
+      </v-card-actions>
+    </v-card>
   </v-dialog>
 </template>
 
@@ -65,7 +95,8 @@
       },
       switchAddDialog () {
         this.$store.dispatch('changeAddDialog')
-      }
+      },
+      addNewDoc () {}
     }
   }
 </script>
