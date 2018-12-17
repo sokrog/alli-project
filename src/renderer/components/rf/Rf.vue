@@ -11,26 +11,23 @@
 
       <v-flex>
         <rf-add></rf-add>
-        <the-message></the-message>
+
+        <the-notification></the-notification>
       </v-flex>
     </v-layout>
   </v-container>
 </template>
 
 <script>
-  import TheMessage from '../messages/TheMessage'
+  import TheNotification from '../notifications/TheNotification'
   import RfTable from './RfTable'
   import RfToolBar from './RfToolBar'
   import RfAdd from './RfAdd'
   import RfEdit from './RfEdit'
 
   export default {
-    data: () => ({
-      addDialog: false,
-      editDialog: false
-    }),
     components: {
-      TheMessage,
+      TheNotification,
       RfTable,
       RfToolBar,
       RfAdd,
