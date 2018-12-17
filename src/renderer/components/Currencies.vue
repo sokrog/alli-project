@@ -3,12 +3,10 @@
     <v-layout row wrap>
       <v-flex>
         <h1 class="text--primary">Currencies</h1>
-
         <v-card
           color="rgba(0, 0, 0, 0.1)"
           flat
         >
-
           <v-card-actions>
             <v-container grid-list-md>
               <v-layout row wrap>
@@ -61,7 +59,6 @@
               </v-layout>
             </v-container>
           </v-card-actions>
-
           <v-card-text>
             <v-data-table
               :headers="headers"
@@ -77,9 +74,7 @@
                   <span> {{props.header.text}} </span>
                 </v-tooltip>
               </template>
-
               <v-progress-linear slot="progress" color="blue" indeterminate></v-progress-linear>
-
               <template slot="items" slot-scope="props">
                 <td class="text-xs-left">{{ props.item.numCode }}</td>
                 <td class="text-xs-left">{{ props.item.charCode }}</td>
@@ -183,7 +178,7 @@
       }
     },
     watch: {
-      date (val) {
+      date () {
         this.dateFormatted = this.formatDate(this.date)
       }
     }

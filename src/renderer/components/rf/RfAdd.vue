@@ -21,31 +21,7 @@
                 ></v-text-field>
               </v-flex>
               <v-flex xs5 md5 lg5>
-                <v-menu
-                    :close-on-content-click="false"
-                    v-model="menuDate"
-                    :nudge-right="40"
-                    lazy
-                    transition="scale-transition"
-                    offset-y
-                    full-width
-                    max-width="290px"
-                    min-width="290px"
-                >
-                  <v-text-field
-                      slot="activator"
-                      v-model="date"
-                      name="date"
-                      label="Date"
-                      hint="MM/DD/YYYY"
-                      persistent-hint
-                      prepend-icon="event"
-                      readonly
-                  ></v-text-field>
-                  <v-date-picker v-model="dateP" no-title
-                                 @input="menuDate = false"
-                  ></v-date-picker>
-                </v-menu>
+                <rf-date-picker></rf-date-picker>
               </v-flex>
             </v-layout>
           </v-container>
@@ -67,7 +43,7 @@
             <v-btn
                 :loading="loading"
                 :disabled="!valid || loading"
-                @click="addNewDoc"
+                @click="onSubmit"
                 round
                 flat
             >
@@ -81,8 +57,13 @@
 </template>
 
 <script>
+  import RfDatePicker from './RfDatePicker'
+
   export default {
-    data: vm => ({
+    components: {
+      RfDatePicker
+    },
+    data: () => ({
       number: '',
       date: '',
       buyer: '',
@@ -92,10 +73,7 @@
         // нужно еще ограничить ввод чисто цифрами
         v => !!v || 'Number is required',
         v => (v && v.length === 3) || 'Number must have 3 characters'
-      ],
-      menuDate: false,
-      dateP: new Date().toISOString().substr(0, 10),
-      dateFormatted: vm.formatDate(new Date().toISOString().substr(0, 10))
+      ]
     }),
     computed: {
       loading () {
@@ -103,14 +81,6 @@
       },
       addDialog () {
         return this.$store.getters.getAddDialog
-      },
-      computedDateFormatted () {
-        this.date = this.formatDate(this.dateP)
-      }
-    },
-    watch: {
-      date (val) {
-        this.dateFormatted = this.formatDate(this.dateP)
       }
     },
     methods: {
@@ -133,18 +103,6 @@
       },
       switchAddDialog () {
         this.$store.dispatch('changeAddDialog')
-      },
-      formatDate (date) {
-        if (!date) return null
-
-        const [year, month, day] = date.split('-')
-        return `${month}/${day}/${year}`
-      },
-      parseDate (date) {
-        if (!date) return null
-
-        const [month, day, year] = date.split('/')
-        return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`
       }
     }
   }
