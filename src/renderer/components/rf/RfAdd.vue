@@ -2,7 +2,7 @@
   <v-dialog v-model="addDialog" persistent max-width="600px">
     <v-card color="rgba(255, 255, 255, 0.75)">
       <v-card-title class="pb-0">
-        <span class="headline">New document</span>
+        <span class="headline grey--text text--darken-3">New document</span>
       </v-card-title>
       <v-card-text class="pt-0 pb-5">
         <v-form ref="form" v-model="valid" validation>
@@ -20,9 +20,31 @@
                     :rules="numberRules"
                 ></v-text-field>
               </v-flex>
+
               <v-flex xs5 md5 lg5>
                 <rf-date-picker></rf-date-picker>
               </v-flex>
+
+              <v-flex xs12 md12 lg12 pb-4>
+                <rf-autocomplete></rf-autocomplete>
+              </v-flex>
+
+              <v-flex xs7 md7 lg7>
+                  <v-text-field
+                      prepend-icon="euro_symbol"
+                      name="amount"
+                      label="Amount"
+                      type="text"
+                      v-model="amount"
+                      required
+                      :rules="amountRules"
+                  ></v-text-field>
+              </v-flex>
+
+              <v-flex xs5 md5 lg5 pt-4>
+                <span class="headline grey--text text--darken-3">RUB</span>
+              </v-flex>
+
             </v-layout>
           </v-container>
         </v-form>
@@ -58,21 +80,27 @@
 
 <script>
   import RfDatePicker from './RfDatePicker'
+  import RfAutocomplete from './RfAutocomplete'
 
   export default {
     components: {
-      RfDatePicker
+      RfDatePicker,
+      RfAutocomplete
     },
     data: () => ({
-      number: '',
-      date: '',
-      buyer: '',
-      amount: '',
+      number: null,
+      date: null,
+      buyer: null,
+      amount: null,
       valid: false,
       numberRules: [
         // нужно еще ограничить ввод чисто цифрами
         v => !!v || 'Number is required',
         v => (v && v.length === 3) || 'Number must have 3 characters'
+      ],
+      amountRules: [
+        // нужно еще ограничить ввод чисто цифрами и в формате float
+        v => !!v || 'Amount is required'
       ]
     }),
     computed: {
