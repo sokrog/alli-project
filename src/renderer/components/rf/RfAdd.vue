@@ -2,7 +2,7 @@
   <v-dialog v-model="addDialog" persistent max-width="600px">
     <v-card color="rgba(255, 255, 255, 0.75)">
       <v-card-title class="pb-0">
-        <span class="headline grey--text text--darken-3">New document</span>
+        <span class="title grey--text text--darken-2">New document</span>
       </v-card-title>
       <v-card-text class="pt-0 pb-5">
         <v-form ref="form" v-model="valid" validation>
@@ -41,8 +41,8 @@
                   ></v-text-field>
               </v-flex>
 
-              <v-flex xs5 md5 lg5 pt-4>
-                <span class="headline grey--text text--darken-3">RUB</span>
+              <v-flex xs5 md5 lg5 pt-4 mt-1>
+                <span class="title grey--text text--darken-2">RUB</span>
               </v-flex>
 
             </v-layout>
