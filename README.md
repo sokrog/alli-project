@@ -28,6 +28,13 @@ npm run lint
 # Делать возможность загрузки скана уже в поле редактирования документа
 # Нужно подумать где и как хранить сканы документов
 ```
+
+```
+# Creditors
+# Нужно поле с вводом сроков отсрочки платежа по поставщикам услуг в днях,
+  исходя из этого будут отображаться документы по которым просрочен платеж
+  - дополнительно можно будет выводить в dashboard просроченные суммы на текущий день
+```
 ---
 
 This project was generated with [electron-vue](https://github.com/SimulatedGREG/electron-vue) using [vue-cli](https://github.com/vuejs/vue-cli). Documentation about the original structure can be found [here](https://simulatedgreg.gitbooks.io/electron-vue/content/index.html).
