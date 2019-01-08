@@ -120,18 +120,11 @@ export default {
         // )
 
         const newDoc = new Doc(123, '12/04/1994', 'FFFF', 123123.00, false, false, '')
-        console.log(newDoc)
 
-        let ws = XLSX.readFile(FILENAME).Sheets['docs']
-        XLSX.utils.sheet_add_json(ws, {
-          Number: newDoc.number,
-          Date: newDoc.date,
-          Buyer: newDoc.buyer,
-          Amount: newDoc.amount,
-          Returns: newDoc.returns,
-          Transffered: newDoc.transf,
-          Scan: newDoc.scan
-        }, {header: ['Number', 'Date', 'Buyer', 'Amount', 'Returns', 'Transffered', 'Scan'], skipHeader: true, origin: -1})
+        let wb = XLSX.readFile(FILENAME)
+        let ws = wb.Sheets['docs']
+        XLSX.utils.sheet_add_json(ws, [newDoc], {header: ['number', 'date', 'buyer', 'amount', 'returns', 'transf', 'scan'], skipHeader: true, origin: -1})
+        XLSX.writeFile(wb, FILENAME, ws)
 
         // commit('createDoc', newDoc)
         commit('setLoading', false)
