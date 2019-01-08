@@ -57,7 +57,7 @@
           <v-spacer></v-spacer>
           <v-flex xs2 md2 lg2>
             <v-btn
-                @click="switchAddDialog"
+                @click="closeAddDialog"
                 round
                 flat
             >
@@ -132,7 +132,7 @@
             })
         }
       },
-      switchAddDialog () {
+      closeAddDialog () {
         this.$store.dispatch('changeAddDialog')
       }
     }
