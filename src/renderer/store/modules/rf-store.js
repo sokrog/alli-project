@@ -36,6 +36,9 @@ export default {
     },
     setSearch (state, payload) {
       state.search = payload
+    },
+    createDoc (state, payload) {
+      state.docs.push(payload)
     }
   },
   actions: {
@@ -101,7 +104,41 @@ export default {
     },
 
     // Добавление документа
-    async addDoc () {
+    async addDoc ({commit}, payload) {
+      commit('setLoading', true)
+      commit('clearError')
+
+      try {
+        // const newDoc = new Doc(
+        //   payload.number,
+        //   payload.date,
+        //   payload.buyer,
+        //   payload.amount,
+        //   '',
+        //   false,
+        //   false
+        // )
+
+        const newDoc = new Doc(123, '12/04/1994', 'FFFF', 123123.00, false, false, '')
+        console.log(newDoc)
+
+        let ws = XLSX.readFile(FILENAME).Sheets['docs']
+        XLSX.utils.sheet_add_json(ws, {
+          Number: newDoc.number,
+          Date: newDoc.date,
+          Buyer: newDoc.buyer,
+          Amount: newDoc.amount,
+          Returns: newDoc.returns,
+          Transffered: newDoc.transf,
+          Scan: newDoc.scan
+        }, {header: ['Number', 'Date', 'Buyer', 'Amount', 'Returns', 'Transffered', 'Scan'], skipHeader: true, origin: -1})
+
+        // commit('createDoc', newDoc)
+        commit('setLoading', false)
+      } catch (e) {
+        commit('setLoading', false)
+        commit('setError', e.message)
+      }
     },
 
     // Инициализация документа XSLX

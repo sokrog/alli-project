@@ -125,8 +125,10 @@
           }
           this.$store.dispatch('addDoc', doc)
             .then(() => {
+              // закрываем диалог
+              this.$store.dispatch('changeAddDialog')
               // перенаправляем после добавления на главную страницу
-              this.$router.push('/rf')
+              // this.$router.push('/rf')
             })
             .catch(() => {
             })
